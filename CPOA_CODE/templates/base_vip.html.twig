@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')}}">
+		<link rel="stylesheet" href="{{ asset('assets/css/footer.css')}}">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<img src="assets/images/logo.jpeg" alt="" height="100" width="210">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor03">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link active" href="{{ path('accueil') }}">Accueil
+								<span class="visually-hidden">(current)</span>
+							</a>
+						</li>
+						{% if is_granted('ROLE_VIP') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('hebergements') }}">Les jeux</a>
+							</li>
+						{% endif %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login') }}">Mon compte</a>
+						</li>
+
+						{% if is_granted('ROLE_HEBERGEUR') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('hebergeur_index') }}">Ajout jeux</a>
+							</li>
+						{% endif %}
+
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('user_index') }}">Admin</a>
+							</li>
+						{% endif %}
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		{% block body %}{% endblock %}
+		<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<p class="footer-links">
+					<a class="link-1" href="accueil">Accueil</a>
+
+					<a href="http://www.blogcrozaclive.com/-42" target="_blank">Blog</a>
+
+					<a href="#">About</a>
+
+
+					<a href="#">Contact</a>
+				</p>
+
+				<p>Open de Tennis Rhone &copy; 2022</p>
+			</div>
+		</footer>
+	</body>
+</html>

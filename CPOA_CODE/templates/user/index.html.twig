@@ -1,0 +1,79 @@
+{% extends 'base_vip.html.twig' %}
+
+{% block body %}
+	<title>Pannel utilisateur</title>
+
+	<h1>Pannel utilisateur</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Password</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>{{ user.password }}</td>
+					<td>
+						<a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+						<a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('user_new') }}" class="style_a">Ajouter un nouveau</a>
+
+	<style>
+		a {
+			color: black;
+
+		}
+		.style_a {
+			text-decoration: none;
+			font-size: 30px;
+			text-align: center;
+			display: block;
+			width: 20%;
+			margin: 5% auto auto;
+		}
+		.style_a:link {
+			color: #265301;
+		}
+
+		.style_a:visited {
+			color: #265301;
+		}
+
+		.style_a:focus {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+
+		a:hover {
+			color: black;
+		}
+		.style_a:active {
+			background: #D0D0D0;
+			color: #D0D0D0;
+		}
+
+		.style_a:hover {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+	</style>
+{% endblock %}

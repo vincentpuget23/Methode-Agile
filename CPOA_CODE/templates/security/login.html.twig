@@ -1,0 +1,225 @@
+{% extends 'base_vip.html.twig' %}
+
+
+{% block body %}
+	<title>Se connecter</title>
+	<form method="post">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.username }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+
+
+			<h1>Vous pouvez consulter votre réservation :
+			</h1>
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Numéro de commmande</th>
+						<th>Mail</th>
+						<th>Nombre de personnes</th>
+						<th>NomHotel</th>
+						<th>Localisation</th>
+						<th>NombreEtoiles</th>
+						<th>services offerts</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				{% for reservation in reservations %}
+					{% if reservation.mail == app.User.email %}
+						{% set id = reservation.idHotel %}
+
+						<tr>
+							<td>{{ reservation.id }}</td>
+							<td>{{ reservation.mail }}</td>
+							<td>{{ reservation.nbPersonnes }}</td>
+
+							{% for hebergeur in hebergeurs %}
+								{% if reservation.idHotel == id %}{% endif %}
+								<td>{{ hebergeur.nomHotel }}</td>
+								<td>{{ hebergeur.localisation }}</td>
+								<td>{{ hebergeur.NombreEtoiles }}</td>
+								<td>{{ hebergeur.services ? hebergeur.services|json_encode : '' }}</td>
+								<a href="{{ path('reservation_delete', {'id':reservation.id}) }}" class="style_ac">supprimer</a>
+							{% endfor %}
+
+						</tr>
+					{% endif %}
+
+
+				{% endfor %}
+
+
+			{% else %}
+				<h1 class="h3 mb-3 font-weight-normal">Connectez-vous!</h1>
+				<div class="formulaire">
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="votre E-mail">
+					<label for="inputPassword">Password</label>
+					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="votre mot de passe">
+				</div>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<div class="sign-in">
+					<button class="essai" type="submit">
+						Se connecter
+					</button>
+					<a class="essai" href='register'>
+						S'inscrire
+					</button>
+				</div>
+			{% endif %}
+
+		</form>
+
+		<style>:root
+		{
+			--bg: #1a1e24;
+			--color: black;
+			--font: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+		}
+
+		.wrapper {
+			padding: 1.5rem 0;
+			filter: url("#goo");
+		}
+		a.button {
+			color: white;
+		}
+		.button {
+			display: inline-block;
+			text-align: center;
+			background: var(--color);
+			color: white;
+			font-weight: bold;
+			padding: 1.18em 1.32em 1.03em;
+			line-height: 1;
+			border-radius: 1em;
+			position: relative;
+			min-width: 8.23em;
+			text-decoration: none;
+			font-family: var(--font);
+			font-size: 1.25rem;
+		}
+		.sign-in .essai {
+			background-color: black;
+			color: white;
+			padding: 40px;
+			border-radius: 30px;
+			text-decoration: none;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		.button:before,
+		.button:after {
+			width: 4.4em;
+			height: 2.95em;
+			position: absolute;
+			content: "";
+			display: inline-block;
+			background: black;
+			border-radius: 50%;
+			transition: transform 1s ease;
+			transform: scale(0);
+			z-index: -1;
+		}
+
+		.button:before {
+			top: -25%;
+			left: 20%;
+		}
+
+		.button:after {
+			bottom: -25%;
+			right: 20%;
+		}
+
+		.button:hover:before,
+		.button:hover:after {
+			transform: none;
+		}
+
+
+		.sign-in {
+			text-align: center;
+			margin-top: 2%;
+			margin-bottom: 9%;
+
+		}
+		.formulaire {
+			max-width: 500px;
+			text-align: center;
+			margin: 0 auto;
+			font-size: 20px;
+		}
+		.btn-lg,
+		.btn-group-lg > .btn {
+			padding: 2rem 3%;
+			font-size: 1.25rem;
+			border-radius: 25px;
+		}
+
+		.formulaire input::placeholder {
+			color: orange;
+			font-weight: bold;
+		}
+
+		.formulaire input {
+			color: orange;
+			font-weight: bold;
+		}
+
+		.form-control {
+			display: block;
+			padding: 0.75rem 1.5rem;
+			width: 100%;
+			font-size: 1rem;
+			font-weight: 400;
+			line-height: 1.5;
+			color: #55595c;
+			background-color: #f7f7f9;
+			background-clip: padding-box;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			border-radius: 0;
+			transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+			margin-top: 1%;
+		}
+		h1,
+		.h1,
+		h2,
+		.h2,
+		h3,
+		.h3,
+		h4,
+		.h4,
+		h5,
+		.h5,
+		h6,
+		.h6 {
+			text-transform: uppercase;
+			letter-spacing: 3px;
+			font-size: 300%;
+
+		}
+
+
+		label {
+			display: inline-block;
+			margin-bottom: 3%;
+			margin-top: 3%;
+		}
+
+		a {
+			color: black;
+		}
+	</style>
+{% endblock %}

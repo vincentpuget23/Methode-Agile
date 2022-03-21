@@ -1,0 +1,93 @@
+{% extends 'base_vip.html.twig' %}
+{% block title %}
+	<title>Pannel Hebergeur</title>
+{% endblock %}
+
+
+{% block body %}
+	<title>Tableau des hébergeurs</title>
+	<h1>Pannel Hebergeur</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>NomHotel</th>
+				<th>Localisation</th>
+				<th>NombreEtoiles</th>
+				<th>services offerts</th>
+				<th>Nombre de chambres disponible</th>
+				<th>Nombre de lits disponibles</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for hebergeur in hebergeurs %}
+
+
+				{% if hebergeur.userName == app.User.email %}
+					<tr>
+						<td>{{ hebergeur.id }}</td>
+						<td>{{ hebergeur.nomHotel }}</td>
+						<td>{{ hebergeur.localisation }}</td>
+						<td>{{ hebergeur.NombreEtoiles }}</td>
+						<td>{{ hebergeur.services ? hebergeur.services|json_encode : '' }}</td>
+						<td>{{ hebergeur.nbchambres }}</td>
+						<td>{{ hebergeur.nblits }}</td>
+						<td>
+							<a href="{{ path('hebergeur_show', {'id': hebergeur.id}) }}">show</a>
+							<a href="{{ path('hebergeur_edit', {'id': hebergeur.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% endif %}
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('hebergeur_new') }}" class="style_a">Ajouter un nouveau</a>
+
+	<style>
+		a {
+			color: black;
+
+		}
+		.style_a {
+			text-decoration: none;
+			font-size: 30px;
+			text-align: center;
+			display: block;
+			width: 20%;
+			margin: 5% auto auto;
+		}
+		.style_a:link {
+			color: #265301;
+		}
+
+		.style_a:visited {
+			color: #265301;
+		}
+
+		.style_a:focus {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+
+		a:hover {
+			color: black;
+		}
+
+		.style_a:active {
+			background: #D0D0D0;
+			color: #D0D0D0;
+		}
+
+		.style_a:hover {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+	</style>
+{% endblock %}

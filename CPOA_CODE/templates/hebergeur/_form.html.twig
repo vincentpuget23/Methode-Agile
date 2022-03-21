@@ -1,0 +1,17 @@
+{% block tittle %}
+	<title>Hebergeur</title>
+{% endblock %}
+
+{% block body %}
+	<div class="form">
+		{{ form_start(form,{'attr': {'class': 'form_start'}}) }}
+		{{ form_widget(form,{'attr': {'class': 'form_test'}}) }}
+		<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+		{{ form_end(form)}}
+	</div>
+	<style>
+		.form_test {
+			margin-bottom: 5%;
+		}
+	</style>
+{% endblock %}

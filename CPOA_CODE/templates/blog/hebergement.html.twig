@@ -1,0 +1,62 @@
+{% extends 'base_vip.html.twig' %}
+{% block title %}Open de Lyon !
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		main {
+			text-align: center;
+
+		}
+		a {
+			color: black;
+		}
+
+		a:hover {
+			color: black;
+		}
+	</style>
+	<main>
+		<h1>
+			Vous souhaitez réserver un hotel ?</h1>
+
+		<h1>Voici tous nos hebergements disponible</h1>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Plateforme</th>
+					<th>prix</th>
+					<th>Type</th>
+					<th>Note</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hebergeur in hebergeurs %}
+					<tr>
+						<td>{{ hebergeur.nomHotel }}</td>
+						<td>{{ hebergeur.localisation }}</td>
+						<td>{{ hebergeur.NombreEtoiles }}</td>
+						<td>{{ hebergeur.services ? hebergeur.services|json_encode : '' }}</td>
+						<td>{{ hebergeur.nbchambres }}</td>
+						<td>
+							<a href="https://store.steampowered.com/games/?l=french">Lien du jeux</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+	</main>
+
+
+{% endblock %}

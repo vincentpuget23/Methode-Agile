@@ -1,0 +1,110 @@
+{% extends 'base_vip.html.twig' %}
+
+
+{% block tittle %}
+	<title>Hebergeur</title>
+{% endblock %}
+
+{% block body %}
+	<h1>Hebergeur</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ hebergeur.id }}</td>
+			</tr>
+			<tr>
+				<th>NomHotel</th>
+				<td>{{ hebergeur.nomHotel }}</td>
+			</tr>
+			<tr>
+				<th>Localisation</th>
+				<td>{{ hebergeur.localisation }}</td>
+			</tr>
+			<tr>
+				<th>NombreEtoiles</th>
+				<td>{{ hebergeur.NombreEtoiles }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('hebergeur_edit', {'id': hebergeur.id}) }}" class="style_ac">éditer</a>
+
+	<a href="{{ path('hebergeur_index') }}" class="style_ab">retour à la liste</a>
+
+	<style>
+		.container {
+			font-size: 1.25em;
+			margin-top: 2%;
+		}
+
+		.style_ab {
+			text-decoration: none;
+			font-size: 30px;
+			text-align: center;
+			display: block;
+			width: 20%;
+			margin: 5% auto auto;
+		}
+
+		.style_ab:link {
+			color: black;
+		}
+
+		.style_ab:visited {
+			color: black;
+		}
+
+		.style_ab:focus {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+
+		.style_ab:hover {
+			border-bottom: 1px solid;
+			background: #D0D0D0;
+		}
+
+		.style_ab:active {
+			background: #D0D0D0;
+			color: #D0D0D0;
+		}
+
+		.style_ac {
+			text-decoration: none;
+			font-size: 30px;
+			text-align: center;
+			display: block;
+			width: 20%;
+			margin: 5% auto auto;
+		}
+
+		.style_ac:link {
+			color: black;
+		}
+
+		.style_ac:visited {
+			color: black;
+		}
+
+		.style_ac:focus {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+
+		.style_ac:hover {
+			border-bottom: 1px solid;
+			background: #D0D0D0;
+		}
+
+		.style_ac:active {
+			background: #D0D0D0;
+			color: #D0D0D0;
+		}
+		.table {
+			width: 80%;
+			text-align: center;
+		}
+	</style>
+{% endblock %}

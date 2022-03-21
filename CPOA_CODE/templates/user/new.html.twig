@@ -1,0 +1,75 @@
+{% extends 'base_vip.html.twig' %}
+{% block tittle %}
+	<title>Nouvel utilisateur</title>
+{% endblock %}
+{% block body %}
+	<div class='container'>
+		<h1>Nouveau utilisateur</h1>
+
+		{{ include('user/_form.html.twig') }}
+
+		<a href="{{ path('user_index') }}"class="style_ab">retour en arrière</a>
+	</div>
+	<style>
+		.container {
+			font-size: 1.25em;
+			margin-top: 2%;
+		}
+		.form {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+		.form_start {
+			justify-content: center;
+			flex-direction: column;
+			width: 50%;
+			margin-top: 1%;
+			color: orange;
+			font-weight: bold;
+			font-size: 20px;
+
+		}
+		.style_ab {
+
+			text-decoration: none;
+			font-size: 30px;
+			text-align: center;
+			display: block;
+			width: 20%;
+			margin: 5% auto auto;
+		}
+
+		.style_ab:link {
+			color: black;
+		}
+
+		.style_ab:visited {
+			color: black;
+		}
+
+		.style_ab:focus {
+			border-bottom: 1px solid;
+			background: #BAE498;
+		}
+
+		.style_ab:hover {
+			border-bottom: 1px solid;
+			background: #D0D0D0;
+		}
+
+		.style_ab:active {
+			background: #D0D0D0;
+			color: #D0D0D0;
+		}
+		label {
+			padding-right: 5%;
+			padding-top: 2%;
+			display: inline-block;
+		}
+	</style>
+
+
+{% endblock %}

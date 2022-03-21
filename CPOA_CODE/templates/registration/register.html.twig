@@ -1,0 +1,93 @@
+{% extends 'base_vip.html.twig' %}
+
+
+{% block body %}
+	<title>S'enregistrer</title>
+	<div class='container'>
+		<h1>Informations</h1>
+
+		<div class="form">
+			{{ form_start(registrationForm,{'attr': {'class': 'form_start'}}) }}
+
+			{{ form_label(registrationForm.email, 'Adresse Email') }}
+			{{ form_widget(registrationForm.email,{'attr': {'class': 'form-control'}}) }}
+
+			{{ form_label(registrationForm.plainPassword, 'Mot de passe ') }}
+			{{ form_widget(registrationForm.plainPassword,{'attr': {'class': 'form-control'}}) }}
+
+			<div class="button-confirm">
+				{{ form_label(registrationForm.agreeTerms, "Accepter les conditions  d'utilisations") }}
+				{{ form_widget(registrationForm.agreeTerms,{'attr': {'class': 'conf'}}) }}
+			</div>
+
+
+			<button type="submit" class="btn">S'inscrire !</button>
+
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
+
+	<style>
+		.container {
+			font-size: 1.25em;
+			margin-top: 2%;
+		}
+		.form {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+		.form_start {
+			display: flex;
+			width justify-content: center;
+			flex-direction: column;
+			width: 50%;
+			margin-top: 1%;
+			color: orange;
+			font-weight: bold;
+			font-size: 20px;
+
+		}
+		.form-control {
+			display: block;
+			padding: 0.75rem 1.5rem;
+			font-weight: 400;
+			font-size: 1.3rem;
+			line-height: 1.5;
+			color: orange;
+			background-color: #f7f7f9;
+			background-clip: padding-box;
+			border: 1 solid #ced4da;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			border-radius: 0;
+			transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+			margin-top: 5%;
+			margin-bottom: 5%;
+
+		}
+		.button-confirm {
+			margin-top: 0.5em;
+		}
+		.btn {
+			margin-top: 5%;
+			background: black;
+			color: white;
+			padding: 40px;
+			border-radius: 30px;
+			text-decoration: none;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.conf {
+
+			width: 20px;
+			height: 20px;
+		}
+	}
+	</style>
+{% endblock %}
